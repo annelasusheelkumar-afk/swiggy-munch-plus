@@ -5,133 +5,280 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swiggy Munch+</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#0f0f0f;
+background:#050505;
 color:white;
 overflow-x:hidden;
 }
 
-header{
+/* HERO */
+
+.hero{
 height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop');
-background-size:cover;
-background-position:center;
 padding:20px;
 }
 
-header h1{
-font-size:70px;
+.hero h1{
+font-size:90px;
+font-weight:800;
 color:#ff5200;
-letter-spacing:3px;
-margin-bottom:20px;
+letter-spacing:4px;
+text-transform:uppercase;
+animation:glow 2s infinite alternate;
 }
 
-header p{
-font-size:24px;
-max-width:800px;
-line-height:1.6;
-color:#f1f1f1;
+@keyframes glow{
+from{
+text-shadow:0 0 10px #ff5200;
+}
+to{
+text-shadow:0 0 30px #ff5200;
+}
 }
 
-.hero-btn{
+.hero p{
+margin-top:25px;
+font-size:22px;
+max-width:900px;
+line-height:1.8;
+color:#f5f5f5;
+}
+
+.hero button{
 margin-top:40px;
-padding:18px 40px;
-font-size:20px;
-background:#ff5200;
+padding:18px 45px;
 border:none;
-border-radius:50px;
+background:#ff5200;
 color:white;
+font-size:20px;
+font-weight:700;
+border-radius:50px;
 cursor:pointer;
-transition:0.3s;
+transition:0.4s;
 }
 
-.hero-btn:hover{
-transform:scale(1.05);
-background:#ff6f2c;
+.hero button:hover{
+transform:scale(1.08);
+background:#ff7a36;
 }
+
+/* SECTION */
 
 .section{
-padding:80px 10%;
+padding:90px 8%;
 }
 
 .section-title{
-font-size:45px;
-margin-bottom:40px;
-color:#ff5200;
+font-size:55px;
 text-align:center;
+margin-bottom:60px;
+color:#ff5200;
+font-weight:800;
 }
 
+/* CARDS */
+
 .cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.card{
+background:#111;
+padding:35px;
+border-radius:25px;
+transition:0.4s;
+border:1px solid rgba(255,82,0,0.2);
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+transform:translateY(-12px);
+border-color:#ff5200;
+}
+
+.card h3{
+font-size:30px;
+margin-bottom:20px;
+color:#ff8d52;
+}
+
+.card p{
+line-height:1.8;
+color:#d4d4d4;
+}
+
+/* PRODUCTS */
+
+.products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
-.card{
-background:#1a1a1a;
+.product{
+background:#121212;
 padding:30px;
 border-radius:20px;
-transition:0.3s;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
+text-align:center;
+transition:0.4s;
 }
 
-.card:hover{
-transform:translateY(-10px);
+.product:hover{
+transform:scale(1.03);
 }
 
-.card h3{
-font-size:28px;
+.product h2{
 margin-bottom:15px;
-color:#ffb088;
+color:#ff5200;
 }
 
-.card p{
-line-height:1.6;
-color:#d7d7d7;
+.product p{
+margin-bottom:15px;
 }
+
+.product button{
+padding:12px 25px;
+background:#ff5200;
+border:none;
+border-radius:30px;
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+/* CART */
+
+.cart{
+margin-top:50px;
+background:#101010;
+padding:40px;
+border-radius:25px;
+text-align:center;
+border:1px solid rgba(255,82,0,0.2);
+}
+
+.cart h2{
+color:#ff5200;
+margin-bottom:20px;
+}
+
+#cart-items{
+margin-bottom:20px;
+line-height:2;
+}
+
+#total{
+font-size:28px;
+font-weight:700;
+}
+
+/* DELIVERY FLOW */
 
 .flow{
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
+align-items:center;
 gap:30px;
-margin-top:50px;
+flex-wrap:wrap;
+margin-top:60px;
 }
 
 .flow-box{
-background:#1d1d1d;
+background:#121212;
 padding:30px;
-border-radius:20px;
-width:250px;
+border-radius:25px;
+width:240px;
 text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.flow-box::before{
+content:'';
+position:absolute;
+top:-100%;
+left:0;
+width:100%;
+height:100%;
+background:rgba(255,82,0,0.08);
+transition:0.5s;
+}
+
+.flow-box:hover::before{
+top:0;
+}
+
+.flow-box h1{
+font-size:60px;
+margin-bottom:15px;
 }
 
 .flow-box h3{
-margin-top:15px;
 color:#ff5200;
+margin-bottom:10px;
 }
+
+/* WHY */
+
+.why{
+background:#0c0c0c;
+border-radius:30px;
+padding:50px;
+line-height:2;
+font-size:20px;
+color:#ddd;
+border-left:5px solid #ff5200;
+}
+
+/* FOOTER */
 
 footer{
 padding:40px;
 text-align:center;
-background:#000;
-color:#888;
+background:black;
 margin-top:50px;
+color:#999;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:55px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section-title{
+font-size:38px;
+}
+
 }
 
 </style>
@@ -139,59 +286,73 @@ margin-top:50px;
 
 <body>
 
-<header>
+<section class="hero">
 
 <h1>Swiggy Munch+</h1>
 
 <p>
-One Route. One Delivery. Unlimited Convenience.
-Order your favorite food along with nearby essentials like cool drinks,
-water bottles, snacks, and kirana items — delivered together through
-a smart hyperlocal delivery network.
+Food. Drinks. Essentials. One Route.
+A hyperlocal delivery experience built for modern India —
+where restaurants, kirana stores, and delivery partners move together
+like a perfectly timed run chase.
 </p>
 
-<button class="hero-btn">
-Experience Combo Delivery
+<button>
+ORDER THE EXPERIENCE
 </button>
 
-</header>
+</section>
 
 <section class="section">
 
-<h2 class="section-title">Why Swiggy Munch+?</h2>
+<h2 class="section-title">Build Your Combo</h2>
 
-<div class="cards">
+<div class="products">
 
-<div class="card">
-<h3>🍔 Food + Essentials</h3>
-<p>
-Customers can order meals along with drinks, snacks, groceries,
-and daily-use items in a single checkout experience.
-</p>
+<div class="product">
+<h2>🍛 Veg Biryani</h2>
+<p>₹340</p>
+<button onclick="addToCart('Veg Biryani',340)">
+Add To Cart
+</button>
 </div>
 
-<div class="card">
-<h3>⚡ Faster Convenience</h3>
-<p>
-No need for multiple delivery apps or repeated delivery charges.
-Everything arrives together in one optimized route.
-</p>
+<div class="product">
+<h2>🥤 Coke</h2>
+<p>₹40</p>
+<button onclick="addToCart('Coke',40)">
+Add To Cart
+</button>
 </div>
 
-<div class="card">
-<h3>🏪 Support Local Kirana</h3>
-<p>
-Nearby kirana stores become hyperlocal partners,
-increasing their business through Swiggy's ecosystem.
-</p>
+<div class="product">
+<h2>💧 Water Bottle</h2>
+<p>₹20</p>
+<button onclick="addToCart('Water Bottle',20)">
+Add To Cart
+</button>
 </div>
 
-<div class="card">
-<h3>🚴 Smart Delivery Flow</h3>
-<p>
-Delivery partners collect food from restaurants and additional items
-from nearby stores while traveling to the customer destination.
-</p>
+<div class="product">
+<h2>🍟 Chips</h2>
+<p>₹30</p>
+<button onclick="addToCart('Chips',30)">
+Add To Cart
+</button>
+</div>
+
+</div>
+
+<div class="cart">
+
+<h2>🛒 Your Combo Cart</h2>
+
+<div id="cart-items">
+No items added yet.
+</div>
+
+<div id="total">
+Total: ₹0
 </div>
 
 </div>
@@ -200,32 +361,32 @@ from nearby stores while traveling to the customer destination.
 
 <section class="section">
 
-<h2 class="section-title">How It Works</h2>
+<h2 class="section-title">Delivery Flow</h2>
 
 <div class="flow">
 
 <div class="flow-box">
-<h1>1️⃣</h1>
-<h3>Order Food</h3>
-<p>Select your favorite meal from Swiggy Food.</p>
+<h1>🍴</h1>
+<h3>Restaurant</h3>
+<p>Food gets prepared instantly.</p>
 </div>
 
 <div class="flow-box">
-<h1>2️⃣</h1>
-<h3>Add Essentials</h3>
-<p>Add drinks, snacks, water bottles, and kirana products.</p>
+<h1>🏪</h1>
+<h3>Kirana Store</h3>
+<p>Nearby essentials packed quickly.</p>
 </div>
 
 <div class="flow-box">
-<h1>3️⃣</h1>
-<h3>Nearby Store Sync</h3>
-<p>Partner kirana stores prepare the required add-on items.</p>
+<h1>🚴</h1>
+<h3>Delivery Partner</h3>
+<p>Collects both orders in one route.</p>
 </div>
 
 <div class="flow-box">
-<h1>4️⃣</h1>
-<h3>Single Route Delivery</h3>
-<p>Delivery partner collects both orders and delivers together.</p>
+<h1>🏠</h1>
+<h3>Customer</h3>
+<p>Everything delivered together.</p>
 </div>
 
 </div>
@@ -234,39 +395,25 @@ from nearby stores while traveling to the customer destination.
 
 <section class="section">
 
-<h2 class="section-title">Core Benefits</h2>
+<h2 class="section-title">Why This Matters</h2>
 
-<div class="cards">
+<div class="why">
 
-<div class="card">
-<h3>💰 Save Delivery Costs</h3>
 <p>
-Reduce duplicate delivery fees by combining multiple needs into one order.
+Swiggy Munch+ reduces multiple delivery trips by combining food and nearby daily essentials into a single optimized delivery flow.
 </p>
-</div>
 
-<div class="card">
-<h3>🎬 Better User Experience</h3>
-<p>
-Customers can continue enjoying movies, cricket matches,
-or family time without interruption.
-</p>
-</div>
+<br>
 
-<div class="card">
-<h3>🌍 Reduced Traffic</h3>
 <p>
-One delivery route helps reduce unnecessary rider movement and fuel usage.
+The platform supports local kirana stores by integrating them into the hyperlocal commerce ecosystem instead of letting them disappear against malls and large chains.
 </p>
-</div>
 
-<div class="card">
-<h3>📈 Increased Revenue</h3>
+<br>
+
 <p>
-Higher order value benefits restaurants, local stores,
-delivery partners, and Swiggy.
+Customers save time, fuel, and extra delivery charges while enjoying uninterrupted moments like movies, cricket matches, family time, or late-night cravings.
 </p>
-</div>
 
 </div>
 
@@ -277,11 +424,29 @@ delivery partners, and Swiggy.
 <h2>Susheel Labs</h2>
 
 <p>
-Project Concept: Swiggy Munch+ <br>
-Hyperlocal Combo Delivery Ecosystem
+Swiggy Munch+ — Hyperlocal Combo Delivery Ecosystem
 </p>
 
 </footer>
+
+<script>
+
+let cart = [];
+let total = 0;
+
+function addToCart(item, price){
+
+cart.push(item);
+
+total += price;
+
+document.getElementById("cart-items").innerHTML = cart.join("<br>");
+
+document.getElementById("total").innerHTML = "Total: ₹" + total;
+
+}
+
+</script>
 
 </body>
 </html>
