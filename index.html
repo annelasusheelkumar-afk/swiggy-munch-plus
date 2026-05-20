@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Swiggy Munch+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -14,12 +16,52 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
 background:#050505;
 color:white;
 overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+nav h2{
+color:#ff5200;
+font-size:30px;
+font-weight:800;
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#ff5200;
 }
 
 /* HERO */
@@ -43,7 +85,6 @@ padding:20px;
 font-size:90px;
 font-weight:800;
 color:#ff5200;
-letter-spacing:4px;
 text-transform:uppercase;
 animation:glow 2s infinite alternate;
 }
@@ -53,7 +94,7 @@ from{
 text-shadow:0 0 10px #ff5200;
 }
 to{
-text-shadow:0 0 30px #ff5200;
+text-shadow:0 0 35px #ff5200;
 }
 }
 
@@ -86,7 +127,7 @@ background:#ff7a36;
 /* SECTION */
 
 .section{
-padding:90px 8%;
+padding:100px 8%;
 }
 
 .section-title{
@@ -120,7 +161,7 @@ border-color:#ff5200;
 }
 
 .card h3{
-font-size:30px;
+font-size:28px;
 margin-bottom:20px;
 color:#ff8d52;
 }
@@ -267,6 +308,17 @@ color:#999;
 
 @media(max-width:768px){
 
+nav{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
 .hero h1{
 font-size:55px;
 }
@@ -286,6 +338,23 @@ font-size:38px;
 
 <body>
 
+<!-- NAVBAR -->
+
+<nav>
+
+<h2>Swiggy Munch+</h2>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Features</a></li>
+<li><a href="#">Partners</a></li>
+<li><a href="#">Vision</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
 <section class="hero">
 
 <h1>Swiggy Munch+</h1>
@@ -294,7 +363,7 @@ font-size:38px;
 Food. Drinks. Essentials. One Route.
 A hyperlocal delivery experience built for modern India —
 where restaurants, kirana stores, and delivery partners move together
-like a perfectly timed run chase.
+like a perfectly timed chase.
 </p>
 
 <button>
@@ -302,6 +371,8 @@ ORDER THE EXPERIENCE
 </button>
 
 </section>
+
+<!-- PRODUCTS -->
 
 <section class="section">
 
@@ -343,6 +414,24 @@ Add To Cart
 
 </div>
 
+<!-- AI RECOMMENDATIONS -->
+
+<div class="card" style="margin-top:40px;">
+
+<h3>🤖 AI Recommendations</h3>
+
+<p>Perfect add-ons for your order:</p>
+
+<ul style="margin-top:20px;line-height:2;">
+<li>🥤 Coke for Biryani</li>
+<li>💧 Water Bottle</li>
+<li>🍨 Ice Cream Combo</li>
+</ul>
+
+</div>
+
+<!-- CART -->
+
 <div class="cart">
 
 <h2>🛒 Your Combo Cart</h2>
@@ -359,9 +448,32 @@ Total: ₹0
 
 </section>
 
+<!-- DELIVERY FLOW -->
+
 <section class="section">
 
 <h2 class="section-title">Delivery Flow</h2>
+
+<div style="
+margin:50px auto;
+max-width:900px;
+padding:30px;
+background:#111;
+border-radius:25px;
+text-align:center;
+font-size:30px;
+line-height:2;
+">
+
+🍴 Restaurant
+➡️
+🏪 Kirana Store
+➡️
+🚴 Delivery Partner
+➡️
+🏠 Customer
+
+</div>
 
 <div class="flow">
 
@@ -393,9 +505,30 @@ Total: ₹0
 
 </section>
 
+<!-- WHY THIS MATTERS -->
+
 <section class="section">
 
 <h2 class="section-title">Why This Matters</h2>
+
+<div class="cards" style="margin-bottom:50px;">
+
+<div class="card">
+<h3>🚴 40%</h3>
+<p>Reduced duplicate delivery trips</p>
+</div>
+
+<div class="card">
+<h3>🏪 Local Growth</h3>
+<p>Support for nearby kirana stores</p>
+</div>
+
+<div class="card">
+<h3>⚡ Faster</h3>
+<p>One-route convenience delivery</p>
+</div>
+
+</div>
 
 <div class="why">
 
@@ -418,6 +551,62 @@ Customers save time, fuel, and extra delivery charges while enjoying uninterrupt
 </div>
 
 </section>
+
+<!-- KIRANA PARTNERS -->
+
+<section class="section">
+
+<h2 class="section-title">Kirana Partners</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🏪 Hemalatha KGS</h3>
+<p>Fast-moving daily essentials and beverages.</p>
+</div>
+
+<div class="card">
+<h3>🏪 Sri Lakshmi Stores</h3>
+<p>Hyperlocal grocery partner for combo delivery.</p>
+</div>
+
+<div class="card">
+<h3>🏪 Fresh Mart</h3>
+<p>Supporting one-route fulfillment ecosystem.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FUTURE AI FEATURES -->
+
+<section class="section">
+
+<h2 class="section-title">Future AI Features</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🤖 Predictive Ordering</h3>
+<p>AI predicts frequently ordered add-ons.</p>
+</div>
+
+<div class="card">
+<h3>📍 Route Intelligence</h3>
+<p>Optimized pickup based on nearby stores.</p>
+</div>
+
+<div class="card">
+<h3>🎤 Voice Ordering</h3>
+<p>Order food and essentials using voice AI.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
 
