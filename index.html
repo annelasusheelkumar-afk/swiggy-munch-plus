@@ -334,6 +334,19 @@ font-size:38px;
 <li><a href="#">Vision</a></li>
 </ul>
 
+<button id="login-btn"
+style="
+background:#ff5200;
+border:none;
+padding:12px 22px;
+border-radius:30px;
+color:white;
+font-weight:700;
+cursor:pointer;
+">
+Login
+</button>
+
 </nav>
 
 <!-- HERO -->
@@ -505,6 +518,12 @@ Swiggy Munch+ — Hyperlocal Combo Delivery Ecosystem
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 import {
 getFirestore,
@@ -527,8 +546,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
 
 console.log("Firebase Connected 🚀");
+
+document.getElementById("login-btn")
+.addEventListener("click", async ()=>{
+
+try{
+
+const result =
+await signInWithPopup(auth, provider);
+
+const user = result.user;
+
+document.getElementById("login-btn").innerHTML =
+`👋 ${user.displayName}`;
+
+console.log("User Logged In:", user);
+
+}catch(error){
+
+console.error(error);
+
+}
+
+});
 
 let cart = [];
 let total = 0;
