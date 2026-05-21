@@ -11,6 +11,92 @@
 
 <style>
 
+/* INTRO SCREEN */
+
+#intro-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999999;
+overflow:hidden;
+animation:fadeOut 1s ease forwards;
+animation-delay:4s;
+}
+
+#intro-title{
+font-size:90px;
+font-weight:800;
+color:#ff5200;
+display:flex;
+gap:15px;
+z-index:2;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.left-text{
+transform:translateX(-800px);
+animation:leftMove 2s forwards;
+}
+
+.right-text{
+transform:translateX(800px);
+animation:rightMove 2s forwards;
+}
+
+#festival-text{
+margin-top:25px;
+font-size:22px;
+color:white;
+opacity:0;
+animation:festivalFade 2s forwards;
+animation-delay:2s;
+z-index:2;
+}
+
+.festival-overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top,#ff520020,transparent);
+z-index:1;
+}
+
+/* ANIMATIONS */
+
+@keyframes leftMove{
+to{
+transform:translateX(0);
+}
+}
+
+@keyframes rightMove{
+to{
+transform:translateX(0);
+}
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+@keyframes festivalFade{
+to{
+opacity:1;
+}
+}
+
 *{
 margin:0;
 padding:0;
@@ -325,6 +411,22 @@ font-size:38px;
 
 <body>
 
+<div id="intro-screen">
+
+<div class="festival-overlay"></div>
+
+<h1 id="intro-title">
+
+<span class="left-text">Swiggy</span>
+
+<span class="right-text">Munch+</span>
+
+</h1>
+
+<p id="festival-text"></p>
+
+</div>
+
 <!-- NAVBAR -->
 
 <nav>
@@ -488,21 +590,6 @@ Customers save time, fuel, and delivery charges while supporting local kirana st
 
 </section>
 
-<!-- RECENT ORDERS -->
-
-<section class="section">
-
-<h2 class="section-title">Recent Orders</h2>
-
-<div class="card">
-
-<div id="orders-list">
-No orders yet.
-</div>
-
-</div>
-
-</section>
 
 <!-- FOOTER -->
 
@@ -522,10 +609,12 @@ Swiggy Munch+ — Hyperlocal Combo Delivery Ecosystem
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
 import {
 getAuth,
 GoogleAuthProvider,
-signInWithPopup
+signInWithRedirect,
+getRedirectResult
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
@@ -566,10 +655,12 @@ await signInWithPopup(auth, provider);
 
 const user = result.user;
 
-document.getElementById("login-btn").innerHTML =
-`👋 ${user.displayName}`;
+document.getElementById("login-btn")
+.addEventListener("click", async ()=>{
 
-console.log("User Logged In:", user);
+try{
+
+await signInWithRedirect(auth, provider);
 
 }catch(error){
 
@@ -579,6 +670,96 @@ console.error(error);
 
 });
 
+getRedirectResult(auth)
+.then((result)=>{
+
+if(result){
+
+const user = result.user;
+
+document.getElementById("login-btn").innerHTML =
+`👋 ${user.displayName}`;
+
+console.log("User Logged In:", user);
+
+}
+
+})
+.catch((error)=>{
+
+console.error(error);
+
+});
+
+/* FESTIVAL ENGINE */
+
+const today = new Date();
+
+const month = today.getMonth() + 1;
+
+const date = today.getDate();
+
+let festivalMessage = "One Route. Infinite Cravings.";
+
+
+// CHRISTMAS
+
+if(month == 12){
+
+festivalMessage = "🎄 Christmas Celebration Mode";
+
+document.body.style.background =
+"linear-gradient(to bottom,#06131f,#000)";
+
+}
+
+
+// DIWALI
+
+if(month == 11){
+
+festivalMessage = "🪔 Diwali Celebration Mode";
+
+document.body.style.background =
+"linear-gradient(to bottom,#140b00,#000)";
+
+}
+
+
+// HOLI
+
+if(month == 3){
+
+festivalMessage = "🌈 Holi Celebration Mode";
+
+document.body.style.background =
+"linear-gradient(135deg,#ff0080,#7928ca)";
+
+}
+
+
+// IPL SUMMER
+
+if(month == 5){
+
+festivalMessage = "🏏 IPL Summer Mode";
+
+}
+
+
+// NEW YEAR
+
+if(month == 1){
+
+festivalMessage = "🎆 New Year Celebration Mode";
+
+}
+
+
+// DISPLAY FESTIVAL TEXT
+
+document.getElementById("festival-text")
+.innerHTML = festivalMessage;
 let cart = [];
 let total = 0;
 
