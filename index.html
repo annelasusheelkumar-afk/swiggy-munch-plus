@@ -636,6 +636,27 @@ document.getElementById("total").innerHTML = "Total: ₹" + total;
 }
 
 </script>
+  <!-- YOUR WEBSITE CONTENT -->
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "swiggy-munchplus.firebaseapp.com",
+    projectId: "swiggy-munchplus",
+    storageBucket: "swiggy-munchplus.firebasestorage.app",
+    messagingSenderId: "884342789888",
+    appId: "1:884342789888:web:4d33084a7e7f0d8d76c5e5",
+    measurementId: "G-1LBFS6WB8M"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  console.log("Firebase Connected Successfully");
+</script>
 
 </body>
 </html>
