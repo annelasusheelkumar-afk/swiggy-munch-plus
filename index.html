@@ -618,44 +618,124 @@ Swiggy Munch+ — Hyperlocal Combo Delivery Ecosystem
 
 </footer>
 
-<script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBzvC_G3rriPGLa0uRRY8F7RU4qr2Ofx44",
+  authDomain: "swiggy-munchplus.firebaseapp.com",
+  projectId: "swiggy-munchplus",
+  storageBucket: "swiggy-munchplus.firebasestorage.app",
+  messagingSenderId: "884342789888",
+  appId: "1:884342789888:web:4d33084a7e7f0d8d76c5e5",
+  measurementId: "G-1LBFS6WB8M"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+console.log("Firebase Connected 🚀");
+
 
 let cart = [];
 let total = 0;
 
-function addToCart(item, price){
+
+window.addToCart = async function(item, price){
 
 cart.push(item);
 
 total += price;
 
-document.getElementById("cart-items").innerHTML = cart.join("<br>");
+document.getElementById("cart-items").innerHTML =
+cart.join("<br>");
 
-document.getElementById("total").innerHTML = "Total: ₹" + total;
+document.getElementById("total").innerHTML =
+"Total: ₹" + total;
+
+
+try{
+
+await addDoc(collection(db, "orders"), {
+
+item: item,
+price: price,
+time: new Date().toLocaleString()
+
+});
+
+console.log("Order Saved Successfully 🚀");
+
+}catch(error){
+
+console.error(error);
+
+}
 
 }
 
 </script>
-  <!-- YOUR WEBSITE CONTENT -->
-
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
 
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "swiggy-munchplus.firebaseapp.com",
-    projectId: "swiggy-munchplus",
-    storageBucket: "swiggy-munchplus.firebasestorage.app",
-    messagingSenderId: "884342789888",
-    appId: "1:884342789888:web:4d33084a7e7f0d8d76c5e5",
-    measurementId: "G-1LBFS6WB8M"
-  };
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+import {
+getFirestore,
+collection,
+addDoc
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-  console.log("Firebase Connected Successfully");
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBzvC_G3rriPGLa0uRRY8F7RU4qr2Ofx44",
+  authDomain: "swiggy-munchplus.firebaseapp.com",
+  projectId: "swiggy-munchplus",
+  storageBucket: "swiggy-munchplus.firebasestorage.app",
+  messagingSenderId: "884342789888",
+  appId: "1:884342789888:web:4d33084a7e7f0d8d76c5e5",
+  measurementId: "G-1LBFS6WB8M"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+console.log("Firebase Connected 🚀");
+
+
+window.addToCart = async function(item, price){
+
+try{
+
+await addDoc(collection(db, "orders"), {
+
+item: item,
+price: price,
+time: new Date().toLocaleString()
+
+});
+
+console.log("Order Saved 🚀");
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
 </script>
 
 </body>
