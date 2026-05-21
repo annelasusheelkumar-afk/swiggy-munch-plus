@@ -571,15 +571,14 @@ loadOrders();
 
 window.addToCart = async function(item, price){
 
-cart.push(item);
+cart.push({
+name: item,
+price: price
+});
 
 total += price;
 
-document.getElementById("cart-items").innerHTML =
-cart.join("<br>");
-
-document.getElementById("total").innerHTML =
-"Total: ₹" + total;
+updateCart();
 
 try{
 
@@ -602,6 +601,69 @@ console.error("Firebase Error:", error);
 }
 
 }
+function removeFromCart(index){
+
+total -= cart[index].price;
+
+cart.splice(index,1);
+
+updateCart();
+
+}
+
+function updateCart(){
+
+let cartHTML = "";
+
+cart.forEach((item,index)=>{
+
+cartHTML += `
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:15px 0;
+background:#1a1a1a;
+padding:12px;
+border-radius:12px;
+">
+
+<span>
+${item.name} - ₹${item.price}
+</span>
+
+<button onclick="removeFromCart(${index})"
+style="
+background:red;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:10px;
+cursor:pointer;
+">
+Remove
+</button>
+
+</div>
+`;
+
+});
+
+if(cartHTML === ""){
+
+cartHTML = "No items added yet.";
+
+}
+
+document.getElementById("cart-items").innerHTML =
+cartHTML;
+
+document.getElementById("total").innerHTML =
+"Total: ₹" + total;
+
+}
+
+window.removeFromCart = removeFromCart;
 
 </script>
 
