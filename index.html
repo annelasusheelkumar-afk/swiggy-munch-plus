@@ -236,7 +236,7 @@ font-size:28px;
 font-weight:700;
 }
 
-/* DELIVERY FLOW */
+/* FLOW */
 
 .flow{
 display:flex;
@@ -253,23 +253,6 @@ padding:30px;
 border-radius:25px;
 width:240px;
 text-align:center;
-position:relative;
-overflow:hidden;
-}
-
-.flow-box::before{
-content:'';
-position:absolute;
-top:-100%;
-left:0;
-width:100%;
-height:100%;
-background:rgba(255,82,0,0.08);
-transition:0.5s;
-}
-
-.flow-box:hover::before{
-top:0;
 }
 
 .flow-box h1{
@@ -361,9 +344,7 @@ font-size:38px;
 
 <p>
 Food. Drinks. Essentials. One Route.
-A hyperlocal delivery experience built for modern India —
-where restaurants, kirana stores, and delivery partners move together
-like a perfectly timed chase.
+A hyperlocal delivery experience built for modern India.
 </p>
 
 <button>
@@ -414,22 +395,6 @@ Add To Cart
 
 </div>
 
-<!-- AI RECOMMENDATIONS -->
-
-<div class="card" style="margin-top:40px;">
-
-<h3>🤖 AI Recommendations</h3>
-
-<p>Perfect add-ons for your order:</p>
-
-<ul style="margin-top:20px;line-height:2;">
-<li>🥤 Coke for Biryani</li>
-<li>💧 Water Bottle</li>
-<li>🍨 Ice Cream Combo</li>
-</ul>
-
-</div>
-
 <!-- CART -->
 
 <div class="cart">
@@ -454,33 +419,12 @@ Total: ₹0
 
 <h2 class="section-title">Delivery Flow</h2>
 
-<div style="
-margin:50px auto;
-max-width:900px;
-padding:30px;
-background:#111;
-border-radius:25px;
-text-align:center;
-font-size:30px;
-line-height:2;
-">
-
-🍴 Restaurant
-➡️
-🏪 Kirana Store
-➡️
-🚴 Delivery Partner
-➡️
-🏠 Customer
-
-</div>
-
 <div class="flow">
 
 <div class="flow-box">
 <h1>🍴</h1>
 <h3>Restaurant</h3>
-<p>Food gets prepared instantly.</p>
+<p>Food prepared instantly.</p>
 </div>
 
 <div class="flow-box">
@@ -492,7 +436,7 @@ line-height:2;
 <div class="flow-box">
 <h1>🚴</h1>
 <h3>Delivery Partner</h3>
-<p>Collects both orders in one route.</p>
+<p>One-route optimized delivery.</p>
 </div>
 
 <div class="flow-box">
@@ -511,100 +455,24 @@ line-height:2;
 
 <h2 class="section-title">Why This Matters</h2>
 
-<div class="cards" style="margin-bottom:50px;">
-
-<div class="card">
-<h3>🚴 40%</h3>
-<p>Reduced duplicate delivery trips</p>
-</div>
-
-<div class="card">
-<h3>🏪 Local Growth</h3>
-<p>Support for nearby kirana stores</p>
-</div>
-
-<div class="card">
-<h3>⚡ Faster</h3>
-<p>One-route convenience delivery</p>
-</div>
-
-</div>
-
 <div class="why">
 
 <p>
-Swiggy Munch+ reduces multiple delivery trips by combining food and nearby daily essentials into a single optimized delivery flow.
+Swiggy Munch+ combines food delivery and nearby daily essentials into one optimized route.
 </p>
 
 <br>
 
 <p>
-The platform supports local kirana stores by integrating them into the hyperlocal commerce ecosystem instead of letting them disappear against malls and large chains.
-</p>
-
-<br>
-
-<p>
-Customers save time, fuel, and extra delivery charges while enjoying uninterrupted moments like movies, cricket matches, family time, or late-night cravings.
+Customers save time, fuel, and delivery charges while supporting local kirana stores.
 </p>
 
 </div>
 
 </section>
 
-<!-- KIRANA PARTNERS -->
+<!-- RECENT ORDERS -->
 
-<section class="section">
-
-<h2 class="section-title">Kirana Partners</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>🏪 Hemalatha KGS</h3>
-<p>Fast-moving daily essentials and beverages.</p>
-</div>
-
-<div class="card">
-<h3>🏪 Sri Lakshmi Stores</h3>
-<p>Hyperlocal grocery partner for combo delivery.</p>
-</div>
-
-<div class="card">
-<h3>🏪 Fresh Mart</h3>
-<p>Supporting one-route fulfillment ecosystem.</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- FUTURE AI FEATURES -->
-
-<section class="section">
-
-<h2 class="section-title">Future AI Features</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>🤖 Predictive Ordering</h3>
-<p>AI predicts frequently ordered add-ons.</p>
-</div>
-
-<div class="card">
-<h3>📍 Route Intelligence</h3>
-<p>Optimized pickup based on nearby stores.</p>
-</div>
-
-<div class="card">
-<h3>🎤 Voice Ordering</h3>
-<p>Order food and essentials using voice AI.</p>
-</div>
-
-</div>
-
-</section>
 <section class="section">
 
 <h2 class="section-title">Recent Orders</h2>
@@ -612,9 +480,7 @@ Customers save time, fuel, and extra delivery charges while enjoying uninterrupt
 <div class="card">
 
 <div id="orders-list">
-
 No orders yet.
-
 </div>
 
 </div>
@@ -633,17 +499,20 @@ Swiggy Munch+ — Hyperlocal Combo Delivery Ecosystem
 
 </footer>
 
+<!-- FIREBASE -->
+
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
 getFirestore,
 collection,
-addDoc
+addDoc,
+getDocs
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyBzvC_G3rriPGLa0uRRY8F7RU4qr2Ofx44",
@@ -661,10 +530,44 @@ const db = getFirestore(app);
 
 console.log("Firebase Connected 🚀");
 
-
 let cart = [];
 let total = 0;
 
+/* LOAD ORDERS */
+
+async function loadOrders(){
+
+const querySnapshot =
+await getDocs(collection(db, "orders"));
+
+let ordersHTML = "";
+
+querySnapshot.forEach((doc) => {
+
+const data = doc.data();
+
+ordersHTML += `
+<p style="margin:10px 0;font-size:18px;">
+🍴 ${data.item} - ₹${data.price}
+</p>
+`;
+
+});
+
+if(ordersHTML === ""){
+
+ordersHTML = "No orders yet.";
+
+}
+
+document.getElementById("orders-list").innerHTML =
+ordersHTML;
+
+}
+
+loadOrders();
+
+/* ADD TO CART */
 
 window.addToCart = async function(item, price){
 
@@ -678,7 +581,6 @@ cart.join("<br>");
 document.getElementById("total").innerHTML =
 "Total: ₹" + total;
 
-
 try{
 
 await addDoc(collection(db, "orders"), {
@@ -691,61 +593,11 @@ time: new Date().toLocaleString()
 
 console.log("Order Saved Successfully 🚀");
 
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-</script>
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-}
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBzvC_G3rriPGLa0uRRY8F7RU4qr2Ofx44",
-  authDomain: "swiggy-munchplus.firebaseapp.com",
-  projectId: "swiggy-munchplus",
-  storageBucket: "swiggy-munchplus.firebasestorage.app",
-  messagingSenderId: "884342789888",
-  appId: "1:884342789888:web:4d33084a7e7f0d8d76c5e5",
-  measurementId: "G-1LBFS6WB8M"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-console.log("Firebase Connected 🚀");
-
-
-window.addToCart = async function(item, price){
-
-try{
-
-await addDoc(collection(db, "orders"), {
-
-item: item,
-price: price,
-time: new Date().toLocaleString()
-
-});
-
-console.log("Order Saved 🚀");
+loadOrders();
 
 }catch(error){
 
-console.error(error);
+console.error("Firebase Error:", error);
 
 }
 
