@@ -655,37 +655,36 @@ const provider = new GoogleAuthProvider();
 document.getElementById("login-btn")
 .addEventListener("click", async () => {
 
-try {
+  try {
 
-await signInWithRedirect(auth, provider);
+    await signInWithRedirect(auth, provider);
 
-} catch(error) {
+  } catch(error) {
 
-console.error(error);
+    console.error(error);
 
-}
+  }
 
 });
 
 getRedirectResult(auth)
 .then((result) => {
 
-if(result){
+  if(result){
 
-const user = result.user;
+    const user = result.user;
 
-document.getElementById("login-btn").innerHTML =
-`👋 ${user.displayName}`;
+    document.getElementById("login-btn").innerHTML =
+    `👋 ${user.displayName}`;
 
-}
+  }
 
 })
 .catch((error) => {
 
-console.error(error);
+  console.error(error);
 
 });
-
 /* FESTIVAL ENGINE */
 
 const today = new Date();
