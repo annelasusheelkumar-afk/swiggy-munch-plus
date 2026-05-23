@@ -639,30 +639,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
-console.log("Firebase Connected 🚀");
-
 document.getElementById("login-btn")
-.addEventListener("click", async ()=>{
+.addEventListener("click", async () => {
 
-try{
-
-const result =
-await signInWithPopup(auth, provider);
-
-const user = result.user;
-
-document.getElementById("login-btn")
-.addEventListener("click", async ()=>{
-
-try{
+try {
 
 await signInWithRedirect(auth, provider);
 
-}catch(error){
+} catch(error) {
 
 console.error(error);
 
@@ -671,7 +660,7 @@ console.error(error);
 });
 
 getRedirectResult(auth)
-.then((result)=>{
+.then((result) => {
 
 if(result){
 
@@ -680,12 +669,10 @@ const user = result.user;
 document.getElementById("login-btn").innerHTML =
 `👋 ${user.displayName}`;
 
-console.log("User Logged In:", user);
-
 }
 
 })
-.catch((error)=>{
+.catch((error) => {
 
 console.error(error);
 
