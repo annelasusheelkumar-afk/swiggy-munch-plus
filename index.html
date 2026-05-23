@@ -524,6 +524,15 @@ No items added yet.
 <div id="total">
 Total: ₹0
 </div>
+<div id="order-status"
+style="
+margin-top:20px;
+font-size:20px;
+font-weight:700;
+color:#ff5200;
+">
+No Order Yet
+</div>
 
 </div>
 <div id="ai-recommendation"
@@ -858,6 +867,30 @@ status.innerHTML =
 }
 
 window.removeFromCart = removeFromCart;
+function startTracking(){
+
+const status =
+document.getElementById("order-status");
+
+status.innerHTML =
+"🍴 Restaurant Preparing";
+
+setTimeout(()=>{
+status.innerHTML =
+"🏪 Collecting Essentials";
+},5000);
+
+setTimeout(()=>{
+status.innerHTML =
+"🚴 Out For Delivery";
+},10000);
+
+setTimeout(()=>{
+status.innerHTML =
+"✅ Delivered";
+},15000);
+
+}
 window.addToCart = async function(item, price){
 
 cart.push({
@@ -868,6 +901,8 @@ price: price
 total += price;
 
 updateCart();
+
+startTracking();
 if(item === "Veg Biryani"){
 document.getElementById("ai-recommendation").innerHTML =
 "🤖 Recommended: Coke + Water Bottle";
