@@ -734,8 +734,13 @@ festivalMessage = "🎆 New Year Celebration Mode";
 
 document.getElementById("festival-text")
 .innerHTML = festivalMessage;
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 let total = 0;
+
+cart.forEach(item=>{
+total += item.price;
+});
 
 /* LOAD ORDERS */
 
@@ -772,7 +777,7 @@ ordersHTML;
 loadOrders();
 
 /* ADD TO CART */
-
+updatecart();
 window.addToCart = async function(item, price){
 
 cart.push({
@@ -816,6 +821,13 @@ updateCart();
 }
 
 function updateCart(){
+document.getElementById("total").innerHTML =
+"Total: ₹" + total;
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
 let cartHTML = "";
 
