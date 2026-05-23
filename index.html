@@ -524,13 +524,14 @@ No items added yet.
 <div id="total">
 Total: ₹0
 </div>
-<div id="order-status"
-style="
-margin-top:20px;
-font-size:20px;
-font-weight:700;
-color:#ff5200;
-">
+<div id="orders-list">
+</div>
+let total = 0;
+
+cart.forEach(item=>{
+total += item.price;
+});
+updateCart();
 No Order Yet
 </div>
 
@@ -694,6 +695,7 @@ getRedirectResult(auth)
   console.error(error);
 
 });
+
 /* FESTIVAL ENGINE */
 
 const today = new Date();
@@ -841,30 +843,6 @@ loadOrders();
 /* ADD TO CART */
 updatecart();
 startTracking();
-function startTracking(){
-
-const status =
-document.getElementById("order-status");
-
-status.innerHTML =
-"🍴 Restaurant Preparing";
-
-setTimeout(()=>{
-status.innerHTML =
-"🏪 Collecting Essentials";
-},5000);
-
-setTimeout(()=>{
-status.innerHTML =
-"🚴 Out For Delivery";
-},10000);
-
-setTimeout(()=>{
-status.innerHTML =
-"✅ Delivered";
-},15000);
-
-}
 
 window.removeFromCart = removeFromCart;
 function startTracking(){
@@ -949,7 +927,7 @@ updateCart();
 
 }
 
-function updateCart(){
+updateCart(){
 document.getElementById("total").innerHTML =
 "Total: ₹" + total;
 
