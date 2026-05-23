@@ -505,6 +505,15 @@ Add To Cart
 <!-- CART -->
 
 <div class="cart">
+<div class="card" style="margin-top:30px;">
+
+<h3>🚚 Order Status</h3>
+
+<p id="order-status">
+Waiting for Order...
+</p>
+
+</div>
 
 <h2>🛒 Your Combo Cart</h2>
 
@@ -516,6 +525,17 @@ No items added yet.
 Total: ₹0
 </div>
 
+</div>
+<div id="ai-recommendation"
+style="
+margin-top:20px;
+padding:15px;
+background:#1a1a1a;
+border-radius:12px;
+font-size:18px;
+color:#ff5200;
+">
+🤖 AI Recommendation will appear here
 </div>
 
 </section>
@@ -671,64 +691,97 @@ const today = new Date();
 
 const month = today.getMonth() + 1;
 
-const date = today.getDate();
+let festivalMessage =
+"One Route. Infinite Cravings.";
 
-let festivalMessage = "One Route. Infinite Cravings.";
+if(month == 1){
 
-
-// CHRISTMAS
-
-if(month == 12){
-
-festivalMessage = "🎄 Christmas Celebration Mode";
-
-document.body.style.background =
-"linear-gradient(to bottom,#06131f,#000)";
+festivalMessage =
+"🎆 Happy New Year";
 
 }
 
+else if(month == 3){
 
-// DIWALI
-
-if(month == 11){
-
-festivalMessage = "🪔 Diwali Celebration Mode";
-
-document.body.style.background =
-"linear-gradient(to bottom,#140b00,#000)";
-
-}
-
-
-// HOLI
-
-if(month == 3){
-
-festivalMessage = "🌈 Holi Celebration Mode";
+festivalMessage =
+"🌈 Holi Celebration";
 
 document.body.style.background =
 "linear-gradient(135deg,#ff0080,#7928ca)";
 
 }
 
+else if(month == 8){
 
-// IPL SUMMER
-
-if(month == 5){
-
-festivalMessage = "🏏 IPL Summer Mode";
+festivalMessage =
+"🇮🇳 Independence Day Celebration";
 
 }
 
+else if(month == 10){
+
+festivalMessage =
+"🪔 Diwali Celebration";
+
+}
+
+else if(month == 12){
+
+festivalMessage =
+"🎄 Christmas Celebration";
+
+}
+
+document.getElementById("festival-text")
+.innerHTML = festivalMessage;
+
+
+// CHRISTMAS
+if(month == 12){
+festivalMessage = "🎄 Merry Christmas";
+document.body.style.background =
+"linear-gradient(to bottom,#06131f,#000)";
+}
 
 // NEW YEAR
-
-if(month == 1){
-
-festivalMessage = "🎆 New Year Celebration Mode";
-
+else if(month == 1){
+festivalMessage = "🎆 Happy New Year";
+document.body.style.background =
+"linear-gradient(to bottom,#00111f,#000)";
 }
 
+// HOLI
+else if(month == 3){
+festivalMessage = "🌈 Happy Holi";
+document.body.style.background =
+"linear-gradient(135deg,#ff0080,#7928ca)";
+}
+
+// IPL SEASON
+else if(month == 4 || month == 5){
+festivalMessage = "🏏 IPL Season Special";
+document.body.style.background =
+"linear-gradient(to bottom,#001d3d,#000)";
+}
+
+// INDEPENDENCE DAY
+else if(month == 8){
+festivalMessage = "🇮🇳 Independence Day";
+document.body.style.background =
+"linear-gradient(to bottom,#ff9933,#ffffff,#138808)";
+}
+
+// DIWALI
+else if(month == 11){
+festivalMessage = "🪔 Diwali Celebration";
+document.body.style.background =
+"linear-gradient(to bottom,#140b00,#000)";
+}
+
+// DEFAULT
+else{
+festivalMessage = "🍴 One Route. Infinite Cravings.";
+}
 
 // DISPLAY FESTIVAL TEXT
 
@@ -778,6 +831,33 @@ loadOrders();
 
 /* ADD TO CART */
 updatecart();
+startTracking();
+function startTracking(){
+
+const status =
+document.getElementById("order-status");
+
+status.innerHTML =
+"🍴 Restaurant Preparing";
+
+setTimeout(()=>{
+status.innerHTML =
+"🏪 Collecting Essentials";
+},5000);
+
+setTimeout(()=>{
+status.innerHTML =
+"🚴 Out For Delivery";
+},10000);
+
+setTimeout(()=>{
+status.innerHTML =
+"✅ Delivered";
+},15000);
+
+}
+
+window.removeFromCart = removeFromCart;
 window.addToCart = async function(item, price){
 
 cart.push({
@@ -788,6 +868,20 @@ price: price
 total += price;
 
 updateCart();
+if(item === "Veg Biryani"){
+document.getElementById("ai-recommendation").innerHTML =
+"🤖 Recommended: Coke + Water Bottle";
+}
+
+else if(item === "Coke"){
+document.getElementById("ai-recommendation").innerHTML =
+"🤖 Recommended: Chips";
+}
+
+else if(item === "Chips"){
+document.getElementById("ai-recommendation").innerHTML =
+"🤖 Recommended: Coke";
+}
 
 try{
 
